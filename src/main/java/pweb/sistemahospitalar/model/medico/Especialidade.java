@@ -1,12 +1,6 @@
 package pweb.sistemahospitalar.model.medico;
 //Ortopedia, Cardiologia, Ginecologia ou Dermatologia
-public enum Especialidade {
-    ORTOPEDIA("Ortopedia"),
-    CARDIO("Cardiolodia"),
-    GINECO("Ginecologia"),
-    DERMATO("Dermatologia")
-    ;
-
+public class Especialidade {
 
     private String nomeEspecialidade;
 
