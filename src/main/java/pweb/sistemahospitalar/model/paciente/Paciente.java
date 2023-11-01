@@ -1,21 +1,30 @@
 package pweb.sistemahospitalar.model.paciente;
 
-import pweb.sistemahospitalar.model.geral.Endereco;
 import pweb.sistemahospitalar.model.abstratas.Pessoa;
+
+import java.util.UUID;
 
 public class Paciente extends Pessoa {
 
-    private CPF cpf;
+    private UUID cpfId;
 
-    public Paciente() {}
 
-    public Paciente(String nome, String email, String telefone, Endereco endereco, CPF cpf) {
-        super(nome, email, telefone, endereco);
-        this.cpf = cpf;
+    public UUID getCpf() {
+        return cpfId;
     }
 
-    public CPF getCpf() {
-        return cpf;
+    public void setCpfId(UUID cpfId){
+        this.cpfId = cpfId;
+    }
+
+    @Override
+    public UUID getId() {
+        return null;
+    }
+
+    @Override
+    public void setId(UUID id) {
+
     }
 
     @Override
@@ -44,12 +53,22 @@ public class Paciente extends Pessoa {
     }
 
     @Override
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setEnderecoId(UUID enderecoId) {
+        this.enderecoId = enderecoId;
     }
 
     @Override
-    public Endereco getEndereco() {
-        return this.endereco;
+    public UUID getEnderecoId() {
+        return this.enderecoId;
+    }
+
+    @Override
+    public UUID getStatusId() {
+        return this.statusId;
+    }
+
+    @Override
+    public void setStatusId(UUID statusId) {
+        this.statusId = statusId;
     }
 }

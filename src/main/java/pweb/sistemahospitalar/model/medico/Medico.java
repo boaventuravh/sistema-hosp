@@ -3,28 +3,38 @@ package pweb.sistemahospitalar.model.medico;
 import pweb.sistemahospitalar.model.geral.Endereco;
 import pweb.sistemahospitalar.model.abstratas.Pessoa;
 
+import java.util.UUID;
+
 public class Medico extends Pessoa {
 
-    private CRM crm;
-    private Especialidade especialidade;
+    private UUID crmId;
+    private UUID especialidadeId;
 
-    public Medico(){}
-
-    public Medico(String nome, String email, String telefone, Endereco endereco, CRM crm) {
-        super(nome, email, telefone, endereco);
-        this.crm = crm;
+    public UUID getCrmId() {
+        return crmId;
     }
 
-    public CRM getCrm() {
-        return crm;
+    public void setCrmId(UUID crmId) {
+        this.crmId = crmId;
     }
 
-    public Especialidade getEspecialidade() {
-        return especialidade;
+    public UUID getEspecialidadeId() {
+        return especialidadeId;
     }
 
-    public void setEspecialidade(Especialidade especialidade) {
-        this.especialidade = especialidade;
+    public void setEspecialidadeId(UUID especialidadeId) {
+        this.especialidadeId = especialidadeId;
+    }
+
+
+    @Override
+    public UUID getId() {
+        return this.id;
+    }
+
+    @Override
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     @Override
@@ -53,12 +63,22 @@ public class Medico extends Pessoa {
     }
 
     @Override
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setEnderecoId(UUID enderecoId) {
+        this.enderecoId = enderecoId;
     }
 
     @Override
-    public Endereco getEndereco() {
-        return this.endereco;
+    public UUID getEnderecoId() {
+        return this.enderecoId;
+    }
+
+    @Override
+    public UUID getStatusId() {
+        return this.statusId;
+    }
+
+    @Override
+    public void setStatusId(UUID statusId) {
+        this.statusId = statusId;
     }
 }
