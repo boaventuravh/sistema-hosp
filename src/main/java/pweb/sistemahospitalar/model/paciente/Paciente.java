@@ -9,7 +9,7 @@ public class Paciente extends Pessoa {
     private UUID cpfId;
 
 
-    public UUID getCpf() {
+    public UUID getCpfId() {
         return cpfId;
     }
 
@@ -18,13 +18,18 @@ public class Paciente extends Pessoa {
     }
 
     @Override
-    public UUID getId() {
-        return null;
+    public void setId(UUID id) {
+
     }
 
     @Override
-    public void setId(UUID id) {
+    public UUID getId() {
+        return this.id;
+    }
 
+    @Override
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     @Override
@@ -63,12 +68,12 @@ public class Paciente extends Pessoa {
     }
 
     @Override
-    public UUID getStatusId() {
-        return this.statusId;
+    public void setStatusId(UUID statusId) {
+        this.statusId = statusId;
     }
 
     @Override
-    public void setStatusId(UUID statusId) {
-        this.statusId = statusId;
+    public UUID getStatusId() {
+        return this.statusId;
     }
 }

@@ -28,13 +28,18 @@ public class Medico extends Pessoa {
 
 
     @Override
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    @Override
     public UUID getId() {
         return this.id;
     }
 
     @Override
-    public void setId(UUID id) {
-        this.id = id;
+    public void setNome(String nome) {
+
     }
 
     @Override
