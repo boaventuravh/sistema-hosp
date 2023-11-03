@@ -1,6 +1,8 @@
 package pweb.sistemahospitalar.model.medico;
 
 import pweb.sistemahospitalar.model.abstratas.Pessoa;
+import pweb.sistemahospitalar.model.geral.Endereco;
+import pweb.sistemahospitalar.model.geral.StatusPessoa;
 
 import java.util.UUID;
 
@@ -8,7 +10,7 @@ import java.util.UUID;
 public class Medico extends Pessoa {
 
     private String crm;
-    private UUID especialidadeId;
+    private Especialidade especialidade;
 
     public String getCrm() {
         return crm;
@@ -18,12 +20,12 @@ public class Medico extends Pessoa {
         this.crm = crm;
     }
 
-    public UUID getEspecialidadeId() {
-        return especialidadeId;
+    public Especialidade getEspecialidade() {
+        return especialidade;
     }
 
-    public void setEspecialidadeId(UUID especialidadeId) {
-        this.especialidadeId = especialidadeId;
+    public void setEspecialidade(Especialidade especialidade) {
+        this.especialidade = especialidade;
     }
 
 
@@ -68,22 +70,22 @@ public class Medico extends Pessoa {
     }
 
     @Override
-    public void setEnderecoId(UUID enderecoId) {
-        this.enderecoId = enderecoId;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     @Override
-    public UUID getEnderecoId() {
-        return this.enderecoId;
+    public Endereco getEndereco() {
+        return this.endereco;
     }
 
     @Override
-    public UUID getStatusId() {
-        return this.statusId;
+    public StatusPessoa getStatus() {
+        return this.status;
     }
 
     @Override
-    public void setStatusId(UUID statusId) {
-        this.statusId = statusId;
+    public void setStatus(StatusPessoa status) {
+        this.status = status;
     }
 }

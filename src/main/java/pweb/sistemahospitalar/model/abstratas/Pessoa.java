@@ -8,17 +8,14 @@ import java.util.UUID;
 
 @MappedSuperclass
 public abstract class Pessoa {
-
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     protected UUID id;
     protected String nome;
     protected String email;
     protected String telefone;
-    protected UUID enderecoId;
-    @OneToOne
-    @JoinColumn()
-    protected UUID statusId;
+    protected Endereco endereco;
+    protected StatusPessoa status;
 
     public abstract void setId(UUID id);
     public abstract UUID getId();
@@ -28,8 +25,8 @@ public abstract class Pessoa {
     public abstract String getEmail();
     public abstract void setTelefone(String telefone);
     public abstract String getTelefone();
-    public abstract void setEnderecoId(UUID enderecoId);
-    public abstract UUID getEnderecoId();
-    public abstract void setStatusId(UUID statusId);
-    public abstract UUID getStatusId();
+    public abstract void setEndereco(Endereco endereco);
+    public abstract Endereco getEndereco();
+    public abstract void setStatus(StatusPessoa status);
+    public abstract StatusPessoa getStatus();
 }

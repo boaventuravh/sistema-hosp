@@ -1,6 +1,8 @@
 package pweb.sistemahospitalar.model.paciente;
 
 import pweb.sistemahospitalar.model.abstratas.Pessoa;
+import pweb.sistemahospitalar.model.geral.Endereco;
+import pweb.sistemahospitalar.model.geral.StatusPessoa;
 
 import java.util.UUID;
 
@@ -58,22 +60,22 @@ public class Paciente extends Pessoa {
     }
 
     @Override
-    public void setEnderecoId(UUID enderecoId) {
-        this.enderecoId = enderecoId;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     @Override
-    public UUID getEnderecoId() {
-        return this.enderecoId;
+    public Endereco getEndereco() {
+        return this.endereco;
     }
 
     @Override
-    public void setStatusId(UUID statusId) {
-        this.statusId = statusId;
+    public void setStatus(StatusPessoa status) {
+        this.status = status;
     }
 
     @Override
-    public UUID getStatusId() {
-        return this.statusId;
+    public StatusPessoa getStatus() {
+        return this.status;
     }
 }

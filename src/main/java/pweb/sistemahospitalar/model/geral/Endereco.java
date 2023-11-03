@@ -1,6 +1,10 @@
 package pweb.sistemahospitalar.model.geral;
 
+import java.util.UUID;
+
 public class Endereco {
+
+    private UUID id;
     private String logradouro;
     private int numero;
     private String complemento;
@@ -9,6 +13,9 @@ public class Endereco {
     private String estado;
     private String cep;
 
+    public UUID getId() {
+        return id;
+    }
     public String getLogradouro() {
         return logradouro;
     }
