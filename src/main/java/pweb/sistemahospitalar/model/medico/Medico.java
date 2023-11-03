@@ -1,21 +1,21 @@
 package pweb.sistemahospitalar.model.medico;
 
-import pweb.sistemahospitalar.model.geral.Endereco;
 import pweb.sistemahospitalar.model.abstratas.Pessoa;
 
 import java.util.UUID;
 
+
 public class Medico extends Pessoa {
 
-    private UUID crmId;
+    private String crm;
     private UUID especialidadeId;
 
-    public UUID getCrmId() {
-        return crmId;
+    public String getCrm() {
+        return crm;
     }
 
-    public void setCrmId(UUID crmId) {
-        this.crmId = crmId;
+    public void setCrm(String crm) {
+        this.crm = crm;
     }
 
     public UUID getEspecialidadeId() {

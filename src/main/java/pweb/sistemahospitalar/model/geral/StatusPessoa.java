@@ -1,5 +1,7 @@
 package pweb.sistemahospitalar.model.geral;
 
+import jakarta.persistence.*;
+
 import java.util.UUID;
 
 public class StatusPessoa {

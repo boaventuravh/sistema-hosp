@@ -1,17 +1,23 @@
 package pweb.sistemahospitalar.model.abstratas;
 
+import jakarta.persistence.*;
 import pweb.sistemahospitalar.model.geral.Endereco;
 import pweb.sistemahospitalar.model.geral.StatusPessoa;
 
 import java.util.UUID;
 
+@MappedSuperclass
 public abstract class Pessoa {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     protected UUID id;
     protected String nome;
     protected String email;
     protected String telefone;
     protected UUID enderecoId;
+    @OneToOne
+    @JoinColumn()
     protected UUID statusId;
 
     public abstract void setId(UUID id);

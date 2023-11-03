@@ -6,15 +6,15 @@ import java.util.UUID;
 
 public class Paciente extends Pessoa {
 
-    private UUID cpfId;
+    private String cpf;
 
 
-    public UUID getCpfId() {
-        return cpfId;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCpfId(UUID cpfId){
-        this.cpfId = cpfId;
+    public void setCpf(String cpf){
+        this.cpf = cpf;
     }
 
     @Override
