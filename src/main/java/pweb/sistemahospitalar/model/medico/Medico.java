@@ -18,8 +18,8 @@ public class Medico extends Pessoa {
     private Especialidade especialidade;
     @OneToOne
     @JoinColumn(name = "endereco_id")
-    protected Endereco endereco;
-    protected StatusPessoa status;
+    private Endereco endereco;
+    private StatusPessoa status;
 
     public String getCrm() {
         return crm;

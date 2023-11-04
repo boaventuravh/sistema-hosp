@@ -17,8 +17,8 @@ public class Paciente extends Pessoa {
     private String cpf;
     @OneToOne
     @JoinColumn(name = "endereco_id")
-    protected Endereco endereco;
-    protected StatusPessoa status;
+    private Endereco endereco;
+    private StatusPessoa status;
 
     public String getCpf() {
         return cpf;
