@@ -14,10 +14,7 @@ public abstract class Pessoa {
     protected String nome;
     protected String email;
     protected String telefone;
-    protected Endereco endereco;
-    protected StatusPessoa status;
 
-    public abstract void setId(UUID id);
     public abstract UUID getId();
     public abstract void setNome(String nome);
     public abstract String getNome();
@@ -25,8 +22,5 @@ public abstract class Pessoa {
     public abstract String getEmail();
     public abstract void setTelefone(String telefone);
     public abstract String getTelefone();
-    public abstract void setEndereco(Endereco endereco);
-    public abstract Endereco getEndereco();
-    public abstract void setStatus(StatusPessoa status);
-    public abstract StatusPessoa getStatus();
+
 }

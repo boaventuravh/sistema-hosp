@@ -1,9 +1,15 @@
 package pweb.sistemahospitalar.model.geral;
 
+import jakarta.persistence.*;
+import pweb.sistemahospitalar.model.abstratas.Pessoa;
+
 import java.util.UUID;
 
+@Entity
+@Table(name = "ENDERECO")
 public class Endereco {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
     private String logradouro;
     private int numero;
@@ -12,14 +18,16 @@ public class Endereco {
     private String cidade;
     private String estado;
     private String cep;
+    @OneToOne(mappedBy = "endereco")
+    private Pessoa pessoa;
 
     public UUID getId() {
         return id;
     }
+
     public String getLogradouro() {
         return logradouro;
     }
-
     public void setLogradouro(String logradouro) {
         this.logradouro = logradouro;
     }
@@ -70,5 +78,13 @@ public class Endereco {
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 }

@@ -1,16 +1,25 @@
 package pweb.sistemahospitalar.model.medico;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import pweb.sistemahospitalar.model.abstratas.Pessoa;
 import pweb.sistemahospitalar.model.geral.Endereco;
 import pweb.sistemahospitalar.model.geral.StatusPessoa;
 
 import java.util.UUID;
 
-
+@Entity
+@Table(name = "MEDICO")
 public class Medico extends Pessoa {
 
     private String crm;
     private Especialidade especialidade;
+    @OneToOne
+    @JoinColumn(name = "endereco_id")
+    protected Endereco endereco;
+    protected StatusPessoa status;
 
     public String getCrm() {
         return crm;
@@ -26,12 +35,6 @@ public class Medico extends Pessoa {
 
     public void setEspecialidade(Especialidade especialidade) {
         this.especialidade = especialidade;
-    }
-
-
-    @Override
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     @Override
@@ -69,22 +72,18 @@ public class Medico extends Pessoa {
         return this.telefone;
     }
 
-    @Override
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
 
-    @Override
     public Endereco getEndereco() {
         return this.endereco;
     }
 
-    @Override
     public StatusPessoa getStatus() {
         return this.status;
     }
 
-    @Override
     public void setStatus(StatusPessoa status) {
         this.status = status;
     }
