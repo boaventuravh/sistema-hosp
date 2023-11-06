@@ -9,7 +9,7 @@ import java.util.UUID;
 @Table(name = "ENDERECO")
 public class Endereco {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String logradouro;
     private int numero;

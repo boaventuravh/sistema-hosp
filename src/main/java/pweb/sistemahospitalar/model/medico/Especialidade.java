@@ -1,26 +1,38 @@
 package pweb.sistemahospitalar.model.medico;
 
+import jakarta.persistence.*;
+
 import java.util.UUID;
 
 //Ortopedia, Cardiologia, Ginecologia ou Dermatologia
+@Entity
+@Table(name = "ESPECIALIDADE")
 public class Especialidade {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    private String nomeEspecialidade;
+    private String descricao;
 
-    public String getNomeEspecialidade() {
-        return nomeEspecialidade;
-    }
-
-    public void setNomeEspecialidade(String nomeEspecialidade) {
-        this.nomeEspecialidade = nomeEspecialidade;
-    }
+    @OneToOne(mappedBy = "especialidade")
+    private Medico medico;
 
     public UUID getId() {
         return id;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+    public Medico getMedico() {
+        return medico;
+    }
+
+    public void setMedico(Medico medico) {
+        this.medico = medico;
     }
 }

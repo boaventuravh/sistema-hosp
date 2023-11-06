@@ -1,29 +1,19 @@
-package pweb.sistemahospitalar.model.geral;
+package pweb.sistemahospitalar.model.consulta;
 
 import jakarta.persistence.*;
-import pweb.sistemahospitalar.model.abstratas.Pessoa;
 
 import java.util.UUID;
 
 @Entity
-@Table(name = "STATUS_PESSOA")
-public class StatusPessoa {
+@Table(name = "STATUS_CONSULTA")
+public class StatusConsulta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String descricao;
-
-    @OneToOne(mappedBy = "status")
-    private Pessoa pessoa;
-
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
+    @OneToOne(mappedBy = "statusConsulta")
+    private Consulta consulta;
 
     public UUID getId() {
         return id;
@@ -35,5 +25,13 @@ public class StatusPessoa {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Consulta getConsulta() {
+        return consulta;
+    }
+
+    public void setConsulta(Consulta consulta) {
+        this.consulta = consulta;
     }
 }

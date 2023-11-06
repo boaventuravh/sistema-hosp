@@ -1,13 +1,12 @@
 package pweb.sistemahospitalar.model.paciente;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import pweb.sistemahospitalar.model.abstratas.Pessoa;
+import pweb.sistemahospitalar.model.consulta.Consulta;
 import pweb.sistemahospitalar.model.geral.Endereco;
 import pweb.sistemahospitalar.model.geral.StatusPessoa;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -15,18 +14,8 @@ import java.util.UUID;
 public class Paciente extends Pessoa {
 
     private String cpf;
-    @OneToOne
-    @JoinColumn(name = "endereco_id")
-    private Endereco endereco;
-    private StatusPessoa status;
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf){
-        this.cpf = cpf;
-    }
+    @OneToMany(mappedBy = "paciente")
+    private List<Consulta> consultas;
 
     @Override
     public UUID getId() {
@@ -63,20 +52,38 @@ public class Paciente extends Pessoa {
         return this.telefone;
     }
 
-
+    @Override
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
 
+    @Override
     public Endereco getEndereco() {
         return this.endereco;
     }
 
+    @Override
     public void setStatus(StatusPessoa status) {
         this.status = status;
     }
 
+    @Override
     public StatusPessoa getStatus() {
         return this.status;
+    }
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf){
+        this.cpf = cpf;
+    }
+
+    public List<Consulta> getConsultas() {
+        return consultas;
+    }
+
+    public void setConsultas(List<Consulta> consultas) {
+        this.consultas = consultas;
     }
 }
