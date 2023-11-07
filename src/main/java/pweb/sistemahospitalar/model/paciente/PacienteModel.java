@@ -15,7 +15,7 @@ public class PacienteModel extends PessoaModel {
 
     private String cpf;
     @OneToMany(mappedBy = "paciente")
-    private List<ConsultaModel> consultaModels;
+    private List<ConsultaModel> consultas;
 
     @Override
     public UUID getId() {
@@ -80,10 +80,10 @@ public class PacienteModel extends PessoaModel {
     }
 
     public List<ConsultaModel> getConsultas() {
-        return consultaModels;
+        return consultas;
     }
 
     public void setConsultas(List<ConsultaModel> consultaModels) {
-        this.consultaModels = consultaModels;
+        this.consultas = consultaModels;
     }
 }
