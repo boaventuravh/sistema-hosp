@@ -7,7 +7,7 @@ import java.util.UUID;
 //Ortopedia, Cardiologia, Ginecologia ou Dermatologia
 @Entity
 @Table(name = "ESPECIALIDADE")
-public class Especialidade {
+public class EspecialidadeModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,7 +15,7 @@ public class Especialidade {
     private String descricao;
 
     @OneToOne(mappedBy = "especialidade")
-    private Medico medico;
+    private MedicoModel medicoModel;
 
     public UUID getId() {
         return id;
@@ -28,11 +28,11 @@ public class Especialidade {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    public Medico getMedico() {
-        return medico;
+    public MedicoModel getMedico() {
+        return medicoModel;
     }
 
-    public void setMedico(Medico medico) {
-        this.medico = medico;
+    public void setMedico(MedicoModel medicoModel) {
+        this.medicoModel = medicoModel;
     }
 }

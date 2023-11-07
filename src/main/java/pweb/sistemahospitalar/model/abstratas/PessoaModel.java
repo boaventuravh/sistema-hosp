@@ -1,14 +1,14 @@
 package pweb.sistemahospitalar.model.abstratas;
 
 import jakarta.persistence.*;
-import pweb.sistemahospitalar.model.geral.Endereco;
-import pweb.sistemahospitalar.model.geral.StatusPessoa;
+import pweb.sistemahospitalar.model.geral.EnderecoModel;
+import pweb.sistemahospitalar.model.geral.StatusPessoaModel;
 
 import java.util.UUID;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Pessoa {
+public abstract class PessoaModel {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     protected UUID id;
@@ -17,10 +17,10 @@ public abstract class Pessoa {
     protected String telefone;
     @OneToOne
     @JoinColumn(name = "status_id")
-    protected StatusPessoa status;
+    protected StatusPessoaModel status;
     @OneToOne
     @JoinColumn(name = "endereco_id")
-    protected Endereco endereco;
+    protected EnderecoModel enderecoModel;
 
     public abstract UUID getId();
     public abstract void setNome(String nome);
@@ -29,9 +29,9 @@ public abstract class Pessoa {
     public abstract String getEmail();
     public abstract void setTelefone(String telefone);
     public abstract String getTelefone();
-    public abstract Endereco getEndereco();
-    public abstract void setEndereco(Endereco endereco);
+    public abstract EnderecoModel getEndereco();
+    public abstract void setEndereco(EnderecoModel enderecoModel);
 
-    public abstract void setStatus(StatusPessoa status);
-    public abstract StatusPessoa getStatus();
+    public abstract void setStatus(StatusPessoaModel status);
+    public abstract StatusPessoaModel getStatus();
 }

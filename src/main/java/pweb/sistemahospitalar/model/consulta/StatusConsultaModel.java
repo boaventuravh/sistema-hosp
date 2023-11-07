@@ -6,14 +6,14 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "STATUS_CONSULTA")
-public class StatusConsulta {
+public class StatusConsultaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String descricao;
     @OneToOne(mappedBy = "statusConsulta")
-    private Consulta consulta;
+    private ConsultaModel consultaModel;
 
     public UUID getId() {
         return id;
@@ -27,11 +27,11 @@ public class StatusConsulta {
         this.descricao = descricao;
     }
 
-    public Consulta getConsulta() {
-        return consulta;
+    public ConsultaModel getConsulta() {
+        return consultaModel;
     }
 
-    public void setConsulta(Consulta consulta) {
-        this.consulta = consulta;
+    public void setConsulta(ConsultaModel consultaModel) {
+        this.consultaModel = consultaModel;
     }
 }

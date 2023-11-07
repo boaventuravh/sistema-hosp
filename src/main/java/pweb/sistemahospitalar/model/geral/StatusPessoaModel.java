@@ -1,13 +1,13 @@
 package pweb.sistemahospitalar.model.geral;
 
 import jakarta.persistence.*;
-import pweb.sistemahospitalar.model.abstratas.Pessoa;
+import pweb.sistemahospitalar.model.abstratas.PessoaModel;
 
 import java.util.UUID;
 
 @Entity
 @Table(name = "STATUS_PESSOA")
-public class StatusPessoa {
+public class StatusPessoaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,14 +15,14 @@ public class StatusPessoa {
     private String descricao;
 
     @OneToOne(mappedBy = "status")
-    private Pessoa pessoa;
+    private PessoaModel pessoaModel;
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public PessoaModel getPessoa() {
+        return pessoaModel;
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setPessoa(PessoaModel pessoaModel) {
+        this.pessoaModel = pessoaModel;
     }
 
     public UUID getId() {

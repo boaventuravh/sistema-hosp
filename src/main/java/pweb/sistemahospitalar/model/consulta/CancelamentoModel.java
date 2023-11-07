@@ -6,25 +6,25 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "CANCELAMENTO")
-public class Cancelamento {
+public class CancelamentoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     @OneToOne
     @JoinColumn(name = "consulta_id")
-    private Consulta consulta;
+    private ConsultaModel consultaModel;
     private String motivo;
 
     public UUID getId() {
         return id;
     }
 
-    public Consulta getConsulta() {
-        return consulta;
+    public ConsultaModel getConsulta() {
+        return consultaModel;
     }
 
-    public void setConsulta(Consulta consulta) {
-        this.consulta = consulta;
+    public void setConsulta(ConsultaModel consultaModel) {
+        this.consultaModel = consultaModel;
     }
 
     public String getMotivo() {

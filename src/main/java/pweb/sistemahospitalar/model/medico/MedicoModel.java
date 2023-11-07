@@ -1,25 +1,25 @@
 package pweb.sistemahospitalar.model.medico;
 
 import jakarta.persistence.*;
-import pweb.sistemahospitalar.model.abstratas.Pessoa;
-import pweb.sistemahospitalar.model.consulta.Consulta;
-import pweb.sistemahospitalar.model.geral.Endereco;
-import pweb.sistemahospitalar.model.geral.StatusPessoa;
+import pweb.sistemahospitalar.model.abstratas.PessoaModel;
+import pweb.sistemahospitalar.model.consulta.ConsultaModel;
+import pweb.sistemahospitalar.model.geral.EnderecoModel;
+import pweb.sistemahospitalar.model.geral.StatusPessoaModel;
 
 import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Table(name = "MEDICO")
-public class Medico extends Pessoa {
+public class MedicoModel extends PessoaModel {
 
     private String crm;
     @OneToOne
     @JoinColumn(name = "especialidade_id")
-    private Especialidade especialidade;
+    private EspecialidadeModel especialidadeModel;
 
     @OneToMany(mappedBy = "medico")
-    private List<Consulta> consultas;
+    private List<ConsultaModel> consultaModels;
 
     @Override
     public UUID getId() {
@@ -55,19 +55,19 @@ public class Medico extends Pessoa {
         return this.telefone;
     }
     @Override
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setEndereco(EnderecoModel enderecoModel) {
+        this.enderecoModel = enderecoModel;
     }
     @Override
-    public Endereco getEndereco() {
-        return this.endereco;
+    public EnderecoModel getEndereco() {
+        return this.enderecoModel;
     }
     @Override
-    public StatusPessoa getStatus() {
+    public StatusPessoaModel getStatus() {
         return this.status;
     }
     @Override
-    public void setStatus(StatusPessoa status) {
+    public void setStatus(StatusPessoaModel status) {
         this.status = status;
     }
     public String getCrm() {
@@ -78,19 +78,19 @@ public class Medico extends Pessoa {
         this.crm = crm;
     }
 
-    public Especialidade getEspecialidade() {
-        return especialidade;
+    public EspecialidadeModel getEspecialidade() {
+        return especialidadeModel;
     }
 
-    public void setEspecialidade(Especialidade especialidade) {
-        this.especialidade = especialidade;
+    public void setEspecialidade(EspecialidadeModel especialidadeModel) {
+        this.especialidadeModel = especialidadeModel;
     }
 
-    public List<Consulta> getConsultas() {
-        return consultas;
+    public List<ConsultaModel> getConsultas() {
+        return consultaModels;
     }
 
-    public void setConsultas(List<Consulta> consultas) {
-        this.consultas = consultas;
+    public void setConsultas(List<ConsultaModel> consultaModels) {
+        this.consultaModels = consultaModels;
     }
 }
