@@ -1,2 +1,6 @@
-package pweb.sistemahospitalar.dtos.medico;public record EspecialidadeRecordDto() {
+package pweb.sistemahospitalar.dtos.medico;
+
+import jakarta.validation.constraints.NotNull;
+
+public record EspecialidadeRecordDto(@NotNull String descricao) {
 }
