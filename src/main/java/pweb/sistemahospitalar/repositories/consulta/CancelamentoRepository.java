@@ -1,4 +1,4 @@
-package pweb.sistemahospitalar.repositories;
+package pweb.sistemahospitalar.repositories.consulta;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
