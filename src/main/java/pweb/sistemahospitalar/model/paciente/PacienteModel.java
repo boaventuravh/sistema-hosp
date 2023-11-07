@@ -54,12 +54,12 @@ public class PacienteModel extends PessoaModel {
 
     @Override
     public void setEndereco(EnderecoModel enderecoModel) {
-        this.enderecoModel = enderecoModel;
+        this.endereco = enderecoModel;
     }
 
     @Override
     public EnderecoModel getEndereco() {
-        return this.enderecoModel;
+        return this.endereco;
     }
 
     @Override

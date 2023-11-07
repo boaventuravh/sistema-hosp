@@ -12,7 +12,7 @@ public class CancelamentoModel {
     private UUID id;
     @OneToOne
     @JoinColumn(name = "consulta_id")
-    private ConsultaModel consultaModel;
+    private ConsultaModel consulta;
     private String motivo;
 
     public UUID getId() {
@@ -20,11 +20,11 @@ public class CancelamentoModel {
     }
 
     public ConsultaModel getConsulta() {
-        return consultaModel;
+        return consulta;
     }
 
     public void setConsulta(ConsultaModel consultaModel) {
-        this.consultaModel = consultaModel;
+        this.consulta = consultaModel;
     }
 
     public String getMotivo() {

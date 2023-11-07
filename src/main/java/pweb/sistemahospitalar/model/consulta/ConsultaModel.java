@@ -15,23 +15,23 @@ public class ConsultaModel {
     private UUID id;
     @ManyToOne
     @JoinColumn(name = "medico_id")
-    private MedicoModel medicoModel;
+    private MedicoModel medico;
     @ManyToOne
     @JoinColumn(name = "paciente_id")
-    private PacienteModel pacienteModel;
+    private PacienteModel paciente;
     @OneToOne(mappedBy = "consulta")
     private CancelamentoModel cancelamentoModel;
     private Date dataHora;
     @OneToOne
     @JoinColumn(name = "status_consulta")
-    private StatusConsultaModel statusConsultaModel;
+    private StatusConsultaModel statusConsulta;
 
     public StatusConsultaModel getStatusConsulta() {
-        return statusConsultaModel;
+        return statusConsulta;
     }
 
     public void setStatusConsulta(StatusConsultaModel statusConsultaModel) {
-        this.statusConsultaModel = statusConsultaModel;
+        this.statusConsulta = statusConsultaModel;
     }
 
     public UUID getId() {
@@ -39,19 +39,19 @@ public class ConsultaModel {
     }
 
     public MedicoModel getMedico() {
-        return medicoModel;
+        return medico;
     }
 
     public void setMedico(MedicoModel medicoModel) {
-        this.medicoModel = medicoModel;
+        this.medico = medicoModel;
     }
 
     public PacienteModel getPaciente() {
-        return pacienteModel;
+        return paciente;
     }
 
     public void setPaciente(PacienteModel pacienteModel) {
-        this.pacienteModel = pacienteModel;
+        this.paciente = pacienteModel;
     }
 
     public Date getDataHora() {

@@ -16,7 +16,7 @@ public class MedicoModel extends PessoaModel {
     private String crm;
     @OneToOne
     @JoinColumn(name = "especialidade_id")
-    private EspecialidadeModel especialidadeModel;
+    private EspecialidadeModel especialidade;
 
     @OneToMany(mappedBy = "medico")
     private List<ConsultaModel> consultas;
@@ -56,11 +56,11 @@ public class MedicoModel extends PessoaModel {
     }
     @Override
     public void setEndereco(EnderecoModel enderecoModel) {
-        this.enderecoModel = enderecoModel;
+        this.endereco = enderecoModel;
     }
     @Override
     public EnderecoModel getEndereco() {
-        return this.enderecoModel;
+        return this.endereco;
     }
     @Override
     public StatusPessoaModel getStatus() {
@@ -79,11 +79,11 @@ public class MedicoModel extends PessoaModel {
     }
 
     public EspecialidadeModel getEspecialidade() {
-        return especialidadeModel;
+        return especialidade;
     }
 
     public void setEspecialidade(EspecialidadeModel especialidadeModel) {
-        this.especialidadeModel = especialidadeModel;
+        this.especialidade = especialidadeModel;
     }
 
     public List<ConsultaModel> getConsultas() {

@@ -20,7 +20,7 @@ public abstract class PessoaModel {
     protected StatusPessoaModel status;
     @OneToOne
     @JoinColumn(name = "endereco_id")
-    protected EnderecoModel enderecoModel;
+    protected EnderecoModel endereco;
 
     public abstract UUID getId();
     public abstract void setNome(String nome);
