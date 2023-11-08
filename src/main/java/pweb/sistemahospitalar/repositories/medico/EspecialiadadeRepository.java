@@ -8,4 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface EspecialiadadeRepository extends JpaRepository<EspecialidadeModel, UUID> {
+    EspecialidadeModel findByDescricao(String descricao);
 }
