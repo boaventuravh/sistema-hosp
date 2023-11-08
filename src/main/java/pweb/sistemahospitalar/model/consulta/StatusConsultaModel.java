@@ -2,6 +2,7 @@ package pweb.sistemahospitalar.model.consulta;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -12,8 +13,8 @@ public class StatusConsultaModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String descricao;
-    @OneToOne(mappedBy = "statusConsulta")
-    private ConsultaModel consultaModel;
+    @OneToMany(mappedBy = "statusConsulta")
+    private List<ConsultaModel> consultas;
 
     public UUID getId() {
         return id;
@@ -27,11 +28,11 @@ public class StatusConsultaModel {
         this.descricao = descricao;
     }
 
-    public ConsultaModel getConsulta() {
-        return consultaModel;
+    public List<ConsultaModel> getConsulta() {
+        return consultas;
     }
 
-    public void setConsulta(ConsultaModel consultaModel) {
-        this.consultaModel = consultaModel;
+    public void setConsulta(List<ConsultaModel> consultas) {
+        this.consultas = consultas;
     }
 }

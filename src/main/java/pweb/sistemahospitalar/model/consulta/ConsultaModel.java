@@ -22,7 +22,7 @@ public class ConsultaModel {
     @OneToOne(mappedBy = "consulta")
     private CancelamentoModel cancelamentoModel;
     private Date dataHora;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "status_consulta")
     private StatusConsultaModel statusConsulta;
 
