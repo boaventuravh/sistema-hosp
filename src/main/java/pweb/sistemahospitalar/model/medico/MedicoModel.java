@@ -14,7 +14,7 @@ import java.util.UUID;
 public class MedicoModel extends PessoaModel {
 
     private String crm;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "especialidade_id")
     private EspecialidadeModel especialidade;
 

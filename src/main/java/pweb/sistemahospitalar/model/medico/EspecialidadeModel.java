@@ -2,6 +2,7 @@ package pweb.sistemahospitalar.model.medico;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 //Ortopedia, Cardiologia, Ginecologia ou Dermatologia
@@ -14,8 +15,8 @@ public class EspecialidadeModel {
     private UUID id;
     private String descricao;
 
-    @OneToOne(mappedBy = "especialidade")
-    private MedicoModel medicoModel;
+    @OneToMany(mappedBy = "especialidade")
+    private List<MedicoModel> medicos;
 
     public UUID getId() {
         return id;
@@ -28,11 +29,11 @@ public class EspecialidadeModel {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    public MedicoModel getMedico() {
-        return medicoModel;
+    public List<MedicoModel> getMedico() {
+        return medicos;
     }
 
-    public void setMedico(MedicoModel medicoModel) {
-        this.medicoModel = medicoModel;
+    public void setMedico(List<MedicoModel> medicos) {
+        this.medicos = medicos;
     }
 }
