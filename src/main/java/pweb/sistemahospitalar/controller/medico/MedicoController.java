@@ -12,6 +12,8 @@ import pweb.sistemahospitalar.dtos.medico.MedicoRecordDto;
 import pweb.sistemahospitalar.model.geral.EnderecoModel;
 import pweb.sistemahospitalar.model.medico.MedicoModel;
 import pweb.sistemahospitalar.repositories.geral.EnderecoRepository;
+import pweb.sistemahospitalar.repositories.geral.StatusPessoaRepository;
+import pweb.sistemahospitalar.repositories.medico.EspecialiadadeRepository;
 import pweb.sistemahospitalar.repositories.medico.MedicoRepository;
 
 @RestController
@@ -22,14 +24,25 @@ public class MedicoController {
     @Autowired
     EnderecoRepository enderecoRepository;
 
+    @Autowired
+    StatusPessoaRepository statusRepository;
+
+    @Autowired
+    EspecialiadadeRepository especialiadadeRepository;
+
     @PostMapping("/medico")
     public ResponseEntity<MedicoModel> saveMedico(@RequestBody @Valid MedicoRecordDto medicoRecordDto){
         var medicoModel = new MedicoModel();
-        var enderecoModel = new EnderecoModel();
         BeanUtils.copyProperties(medicoRecordDto, medicoModel);
+
+        var enderecoModel = new EnderecoModel();
         BeanUtils.copyProperties(medicoModel.getEndereco(), enderecoModel);
+
         enderecoRepository.save(enderecoModel);
+
         medicoModel.setEndereco(enderecoRepository.getReferenceById(enderecoModel.getId()));
+        medicoModel.setStatus(statusRepository.findByDescricao(medicoRecordDto.status().getDescricao()));
+        medicoModel.setEspecialidade(especialiadadeRepository.findByDescricao(medicoRecordDto.especialidade().getDescricao()));
         return ResponseEntity.status(HttpStatus.CREATED).body(medicoRepository.save(medicoModel));
     }
 
