@@ -3,6 +3,7 @@ package pweb.sistemahospitalar.model.geral;
 import jakarta.persistence.*;
 import pweb.sistemahospitalar.model.abstratas.PessoaModel;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -14,15 +15,15 @@ public class StatusPessoaModel {
     private UUID id;
     private String descricao;
 
-    @OneToOne(mappedBy = "status")
-    private PessoaModel pessoaModel;
+    @OneToMany(mappedBy = "status")
+    private List<PessoaModel> pessoas;
 
-    public PessoaModel getPessoa() {
-        return pessoaModel;
+    public List<PessoaModel> getPessoa() {
+        return pessoas;
     }
 
-    public void setPessoa(PessoaModel pessoaModel) {
-        this.pessoaModel = pessoaModel;
+    public void setPessoa(List<PessoaModel> pessoas) {
+        this.pessoas = pessoas;
     }
 
     public UUID getId() {

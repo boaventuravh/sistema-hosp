@@ -15,7 +15,7 @@ public abstract class PessoaModel {
     protected String nome;
     protected String email;
     protected String telefone;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "status_id")
     protected StatusPessoaModel status;
     @OneToOne
