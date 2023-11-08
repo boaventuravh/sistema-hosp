@@ -13,6 +13,7 @@ public class EspecialidadeModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+    @Column(unique = true)
     private String descricao;
 
     @OneToMany(mappedBy = "especialidade")

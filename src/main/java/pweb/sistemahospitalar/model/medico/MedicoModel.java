@@ -13,6 +13,7 @@ import java.util.UUID;
 @Table(name = "MEDICO")
 public class MedicoModel extends PessoaModel {
 
+    @Column(unique = true)
     private String crm;
     @ManyToOne
     @JoinColumn(name = "especialidade_id")

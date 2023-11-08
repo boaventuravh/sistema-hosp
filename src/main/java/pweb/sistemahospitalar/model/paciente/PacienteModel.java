@@ -13,6 +13,7 @@ import java.util.UUID;
 @Table(name = "PACIENTE")
 public class PacienteModel extends PessoaModel {
 
+    @Column(unique = true)
     private String cpf;
     @OneToMany(mappedBy = "paciente")
     private List<ConsultaModel> consultas;

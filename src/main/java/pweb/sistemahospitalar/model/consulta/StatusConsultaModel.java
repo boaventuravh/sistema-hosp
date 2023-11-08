@@ -12,6 +12,7 @@ public class StatusConsultaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+    @Column(unique = true)
     private String descricao;
     @OneToMany(mappedBy = "statusConsulta")
     private List<ConsultaModel> consultas;

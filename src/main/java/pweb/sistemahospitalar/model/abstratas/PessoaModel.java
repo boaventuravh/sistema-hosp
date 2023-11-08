@@ -13,7 +13,9 @@ public abstract class PessoaModel {
     @GeneratedValue(strategy= GenerationType.AUTO)
     protected UUID id;
     protected String nome;
+    @Column(unique = true)
     protected String email;
+    @Column(unique = true)
     protected String telefone;
     @ManyToOne
     @JoinColumn(name = "status_id")
