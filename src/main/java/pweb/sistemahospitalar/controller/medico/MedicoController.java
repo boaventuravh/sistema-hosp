@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import pweb.sistemahospitalar.dtos.medico.MedicoRecordDto;
+import pweb.sistemahospitalar.dtos.completo.medico.MedicoRecordDto;
 import pweb.sistemahospitalar.model.geral.EnderecoModel;
 import pweb.sistemahospitalar.model.medico.MedicoModel;
 import pweb.sistemahospitalar.repositories.geral.EnderecoRepository;

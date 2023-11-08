@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import pweb.sistemahospitalar.dtos.consulta.StatusConsultaRecordDto;
+import pweb.sistemahospitalar.dtos.completo.consulta.StatusConsultaRecordDto;
 import pweb.sistemahospitalar.model.consulta.StatusConsultaModel;
 import pweb.sistemahospitalar.repositories.consulta.StatusConsultaRepository;
 

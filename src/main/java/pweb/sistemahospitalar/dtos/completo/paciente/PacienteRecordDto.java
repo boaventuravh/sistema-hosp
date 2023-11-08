@@ -1,4 +1,4 @@
-package pweb.sistemahospitalar.dtos.paciente;
+package pweb.sistemahospitalar.dtos.completo.paciente;
 
 import jakarta.validation.constraints.NotNull;
 import pweb.sistemahospitalar.model.geral.EnderecoModel;

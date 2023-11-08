@@ -1,4 +1,4 @@
-package pweb.sistemahospitalar.dtos.medico;
+package pweb.sistemahospitalar.dtos.completo.medico;
 
 import jakarta.validation.constraints.NotNull;
 
