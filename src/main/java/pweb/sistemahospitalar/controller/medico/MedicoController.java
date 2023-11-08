@@ -5,6 +5,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,19 +19,17 @@ import pweb.sistemahospitalar.repositories.medico.MedicoRepository;
 
 @RestController
 public class MedicoController {
-
     @Autowired
     MedicoRepository medicoRepository;
     @Autowired
     EnderecoRepository enderecoRepository;
-
     @Autowired
     StatusPessoaRepository statusRepository;
-
     @Autowired
     EspecialiadadeRepository especialiadadeRepository;
 
     @PostMapping("/medico")
+    @Transactional
     public ResponseEntity<MedicoModel> saveMedico(@RequestBody @Valid MedicoRecordDto medicoRecordDto){
         var medicoModel = new MedicoModel();
         BeanUtils.copyProperties(medicoRecordDto, medicoModel);
@@ -43,7 +42,13 @@ public class MedicoController {
         medicoModel.setEndereco(enderecoRepository.getReferenceById(enderecoModel.getId()));
         medicoModel.setStatus(statusRepository.findByDescricao(medicoRecordDto.status().getDescricao()));
         medicoModel.setEspecialidade(especialiadadeRepository.findByDescricao(medicoRecordDto.especialidade().getDescricao()));
-        return ResponseEntity.status(HttpStatus.CREATED).body(medicoRepository.save(medicoModel));
+
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(medicoRepository.save(medicoModel));
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 
 }
