@@ -1,5 +1,6 @@
 package pweb.sistemahospitalar.model.geral;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import pweb.sistemahospitalar.model.abstratas.PessoaModel;
 
@@ -16,6 +17,7 @@ public class StatusPessoaModel {
     @Column(unique = true)
     private String descricao;
 
+    @JsonManagedReference(value = "status")
     @OneToMany(mappedBy = "status")
     private List<PessoaModel> pessoas;
 

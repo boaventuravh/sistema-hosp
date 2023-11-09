@@ -1,5 +1,6 @@
 package pweb.sistemahospitalar.model.abstratas;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import pweb.sistemahospitalar.model.geral.EnderecoModel;
 import pweb.sistemahospitalar.model.geral.StatusPessoaModel;
@@ -17,9 +18,13 @@ public abstract class PessoaModel {
     protected String email;
     @Column(unique = true)
     protected String telefone;
+
+    @JsonBackReference(value = "status_id")
     @ManyToOne
     @JoinColumn(name = "status_id")
     protected StatusPessoaModel status;
+
+    @JsonBackReference(value = "endereco_id")
     @OneToOne
     @JoinColumn(name = "endereco_id")
     protected EnderecoModel endereco;

@@ -1,5 +1,6 @@
 package pweb.sistemahospitalar.model.geral;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import pweb.sistemahospitalar.model.abstratas.PessoaModel;
 
@@ -18,6 +19,8 @@ public class EnderecoModel {
     private String cidade;
     private String estado;
     private String cep;
+
+    @JsonManagedReference(value = "endereco")
     @OneToOne(mappedBy = "endereco")
     private PessoaModel pessoaModel;
 

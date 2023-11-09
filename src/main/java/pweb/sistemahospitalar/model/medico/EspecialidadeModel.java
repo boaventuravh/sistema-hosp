@@ -1,5 +1,6 @@
 package pweb.sistemahospitalar.model.medico;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -16,6 +17,8 @@ public class EspecialidadeModel {
     @Column(unique = true)
     private String descricao;
 
+
+    @JsonManagedReference(value = "especialidade")
     @OneToMany(mappedBy = "especialidade")
     private List<MedicoModel> medicos;
 
