@@ -17,7 +17,7 @@ public class StatusPessoaModel {
     @Column(unique = true)
     private String descricao;
 
-    @JsonManagedReference(value = "status")
+    @JsonManagedReference(value = "status_id")
     @OneToMany(mappedBy = "status")
     private List<PessoaModel> pessoas;
 

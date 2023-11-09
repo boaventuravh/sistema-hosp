@@ -18,7 +18,7 @@ public class EspecialidadeModel {
     private String descricao;
 
 
-    @JsonManagedReference(value = "especialidade")
+    @JsonManagedReference(value = "especialidade_id")
     @OneToMany(mappedBy = "especialidade")
     private List<MedicoModel> medicos;
 

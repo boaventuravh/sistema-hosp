@@ -20,7 +20,7 @@ public class EnderecoModel {
     private String estado;
     private String cep;
 
-    @JsonManagedReference(value = "endereco")
+    @JsonManagedReference(value = "endereco_id")
     @OneToOne(mappedBy = "endereco")
     private PessoaModel pessoaModel;
 
