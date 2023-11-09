@@ -57,12 +57,18 @@ public class MedicoController {
     }
 
     @GetMapping("/medico")
-    public ResponseEntity<List<MedicoModel>> listarMedicos(){
-        var list = medicoRepository.findAll();
+    public ResponseEntity<List<MedicoListRecordDto>> listarMedicos(){
+        var listaCompleta = medicoRepository.findAll();
 
-        list.removeIf(m -> m.getStatus().getDescricao().equalsIgnoreCase("inativo"));
+        listaCompleta.removeIf(m -> m.getStatus().getDescricao().equalsIgnoreCase("inativo"));
 
-        return ResponseEntity.status(HttpStatus.OK).body(list);
+        List<MedicoListRecordDto> listaFiltrada = new ArrayList<>();
+        //nome email crm especialidade
+        for(MedicoModel m : listaCompleta){
+            listaFiltrada.add(new MedicoListRecordDto(m.getNome(), m.getEmail(), m.getCrm(), m.getEspecialidade().getDescricao()));
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(listaFiltrada);
     }
 
 }
