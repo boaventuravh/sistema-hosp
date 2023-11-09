@@ -18,8 +18,10 @@ import pweb.sistemahospitalar.repositories.geral.EnderecoRepository;
 import pweb.sistemahospitalar.repositories.geral.StatusPessoaRepository;
 import pweb.sistemahospitalar.repositories.medico.EspecialiadadeRepository;
 import pweb.sistemahospitalar.repositories.medico.MedicoRepository;
+import pweb.sistemahospitalar.service.OrdenaPessoaPorNome;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -61,12 +63,14 @@ public class MedicoController {
         var listaCompleta = medicoRepository.findAll();
 
         listaCompleta.removeIf(m -> m.getStatus().getDescricao().equalsIgnoreCase("inativo"));
+        listaCompleta.sort(new OrdenaPessoaPorNome());
 
         List<MedicoListRecordDto> listaFiltrada = new ArrayList<>();
         //nome email crm especialidade
         for(MedicoModel m : listaCompleta){
             listaFiltrada.add(new MedicoListRecordDto(m.getNome(), m.getEmail(), m.getCrm(), m.getEspecialidade().getDescricao()));
         }
+
 
         return ResponseEntity.status(HttpStatus.OK).body(listaFiltrada);
     }
