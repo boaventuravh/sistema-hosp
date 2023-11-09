@@ -66,7 +66,7 @@ public class MedicoController {
         listaCompleta.sort(new OrdenaPessoaPorNome());
 
         List<MedicoListRecordDto> listaFiltrada = new ArrayList<>();
-        //nome email crm especialidade
+
         for(MedicoModel m : listaCompleta){
             listaFiltrada.add(new MedicoListRecordDto(m.getNome(), m.getEmail(), m.getCrm(), m.getEspecialidade().getDescricao()));
         }
