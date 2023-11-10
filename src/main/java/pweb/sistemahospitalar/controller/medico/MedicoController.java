@@ -44,6 +44,9 @@ public class MedicoController {
         var enderecoModel = new EnderecoModel();
         BeanUtils.copyProperties(medicoModel.getEndereco(), enderecoModel);
 
+        if(statusRepository.findByDescricao(medicoRecordDto.status().getDescricao()) == null || especialiadadeRepository.findByDescricao(medicoRecordDto.especialidade().getDescricao()) == null)
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+
         enderecoRepository.save(enderecoModel);
 
         medicoModel.setEndereco(enderecoRepository.getReferenceById(enderecoModel.getId()));
@@ -70,7 +73,6 @@ public class MedicoController {
         for(MedicoModel m : listaCompleta){
             listaFiltrada.add(new MedicoListRecordDto(m.getNome(), m.getEmail(), m.getCrm(), m.getEspecialidade().getDescricao()));
         }
-
 
         return ResponseEntity.status(HttpStatus.OK).body(listaFiltrada);
     }
