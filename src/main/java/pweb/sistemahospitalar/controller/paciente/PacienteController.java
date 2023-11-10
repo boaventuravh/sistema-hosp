@@ -31,6 +31,7 @@ public class PacienteController {
     public ResponseEntity<PacienteModel> savePaciente(@RequestBody @Valid PacienteRecordDto pacienteRecordDto){
         var pacienteModel = new PacienteModel();
         BeanUtils.copyProperties(pacienteRecordDto, pacienteModel);
+        pacienteModel.setStatus(statusRepository.findByDescricao("ativo"));
 
         var enderecoModel = new EnderecoModel();
         BeanUtils.copyProperties(pacienteModel.getEndereco(), enderecoModel);
@@ -38,7 +39,6 @@ public class PacienteController {
         enderecoRepository.save(enderecoModel);
 
         pacienteModel.setEndereco(enderecoRepository.getReferenceById(enderecoModel.getId()));
-        pacienteModel.setStatus(statusRepository.findByDescricao(pacienteRecordDto.status().getDescricao()));
 
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(pacienteRepository.save(pacienteModel));

@@ -38,19 +38,21 @@ public class MedicoController {
     @PostMapping("/medico")
     @Transactional
     public ResponseEntity<MedicoModel> saveMedico(@RequestBody @Valid MedicoRecordDto medicoRecordDto){
+
+        if(especialiadadeRepository.findByDescricao(medicoRecordDto.especialidade().getDescricao()) == null) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+
         var medicoModel = new MedicoModel();
         BeanUtils.copyProperties(medicoRecordDto, medicoModel);
+        medicoModel.setStatus(statusRepository.findByDescricao("ativo"));
 
         var enderecoModel = new EnderecoModel();
         BeanUtils.copyProperties(medicoModel.getEndereco(), enderecoModel);
 
-        if(statusRepository.findByDescricao(medicoRecordDto.status().getDescricao()) == null || especialiadadeRepository.findByDescricao(medicoRecordDto.especialidade().getDescricao()) == null)
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-
         enderecoRepository.save(enderecoModel);
 
         medicoModel.setEndereco(enderecoRepository.getReferenceById(enderecoModel.getId()));
-        medicoModel.setStatus(statusRepository.findByDescricao(medicoRecordDto.status().getDescricao()));
         medicoModel.setEspecialidade(especialiadadeRepository.findByDescricao(medicoRecordDto.especialidade().getDescricao()));
 
         try {
