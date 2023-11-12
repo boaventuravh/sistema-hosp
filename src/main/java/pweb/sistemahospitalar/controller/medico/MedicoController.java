@@ -6,12 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pweb.sistemahospitalar.dtos.completo.medico.MedicoRecordDto;
 import pweb.sistemahospitalar.dtos.listagem.MedicoListRecordDto;
+import pweb.sistemahospitalar.dtos.update.medico.MedicoUpdateRecordDto;
 import pweb.sistemahospitalar.model.geral.EnderecoModel;
 import pweb.sistemahospitalar.model.medico.MedicoModel;
 import pweb.sistemahospitalar.repositories.geral.EnderecoRepository;
@@ -23,6 +21,7 @@ import pweb.sistemahospitalar.service.OrdenaPessoaPorNome;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class MedicoController {
@@ -77,6 +76,41 @@ public class MedicoController {
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(listaFiltrada);
+    }
+
+    @PutMapping("/medico/{crm}")
+    @Transactional
+    public ResponseEntity<Object> atualizaMedico(@PathVariable(value = "crm") String crm,
+                                                 @RequestBody @Valid MedicoUpdateRecordDto medicoUpdateRecordDto){
+
+        Optional<MedicoModel> medicoOptional = Optional.ofNullable(medicoRepository.findByCrm(crm));
+
+        if(medicoOptional.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("CRM não cadastrado!");
+        }
+
+        var medicoModel = medicoOptional.get();
+        if (medicoUpdateRecordDto.nome() != null && !medicoUpdateRecordDto.nome().equals(medicoModel.getNome())){
+            medicoModel.setNome(medicoUpdateRecordDto.nome());
+        }
+
+        if (medicoUpdateRecordDto.telefone() != null && !medicoUpdateRecordDto.telefone().equals(medicoModel.getTelefone())){
+            medicoModel.setTelefone(medicoUpdateRecordDto.telefone());
+        }
+
+        if (medicoUpdateRecordDto.endereco() != null){
+            Optional<EnderecoModel> enderecoOptional = enderecoRepository.findById(medicoModel.getEndereco().getId());
+            var enderecoModel = enderecoOptional.get();
+            BeanUtils.copyProperties(medicoUpdateRecordDto.endereco(), enderecoModel);
+            enderecoRepository.save(enderecoModel);
+        }
+
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(medicoRepository.save(medicoModel));
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Não foi possível atualizar o cadastro");
+        }
     }
 
 }
