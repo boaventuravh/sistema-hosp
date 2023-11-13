@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import pweb.sistemahospitalar.dtos.completo.medico.MedicoRecordDto;
 import pweb.sistemahospitalar.dtos.listagem.MedicoListRecordDto;
-import pweb.sistemahospitalar.dtos.update.medico.MedicoUpdateRecordDto;
+import pweb.sistemahospitalar.dtos.update.PessoaUpdateRecordDto;
 import pweb.sistemahospitalar.model.geral.EnderecoModel;
 import pweb.sistemahospitalar.model.medico.MedicoModel;
 import pweb.sistemahospitalar.repositories.geral.EnderecoRepository;
@@ -19,7 +19,6 @@ import pweb.sistemahospitalar.repositories.medico.MedicoRepository;
 import pweb.sistemahospitalar.service.OrdenaPessoaPorNome;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -81,7 +80,7 @@ public class MedicoController {
     @PutMapping("/medico/{crm}")
     @Transactional
     public ResponseEntity<Object> atualizaMedico(@PathVariable(value = "crm") String crm,
-                                                 @RequestBody @Valid MedicoUpdateRecordDto medicoUpdateRecordDto){
+                                                 @RequestBody @Valid PessoaUpdateRecordDto medicoUpdateRecordDto){
 
         Optional<MedicoModel> medicoOptional = Optional.ofNullable(medicoRepository.findByCrm(crm));
 
