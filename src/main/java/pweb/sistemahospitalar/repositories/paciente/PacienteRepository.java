@@ -8,4 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface PacienteRepository extends JpaRepository<PacienteModel, UUID> {
+    PacienteModel findByCpf(String cpf);
 }
