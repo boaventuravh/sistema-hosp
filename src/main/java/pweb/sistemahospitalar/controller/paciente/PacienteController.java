@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import pweb.sistemahospitalar.dtos.completo.paciente.PacienteRecordDto;
 import pweb.sistemahospitalar.dtos.update.PessoaUpdateRecordDto;
 import pweb.sistemahospitalar.model.geral.EnderecoModel;
+import pweb.sistemahospitalar.model.medico.MedicoModel;
 import pweb.sistemahospitalar.model.paciente.PacienteModel;
 import pweb.sistemahospitalar.repositories.geral.EnderecoRepository;
 import pweb.sistemahospitalar.repositories.geral.StatusPessoaRepository;
@@ -82,5 +83,20 @@ public class PacienteController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Não foi possível atualizar o cadastro");
         }
 
+    }
+
+    @DeleteMapping("/paciente/{cpf}")
+    public ResponseEntity<Object> deletePaciente(@PathVariable(value = "cpf") String cpf){
+        Optional<PacienteModel> pacienteOptional = Optional.ofNullable(pacienteRepository.findByCpf(cpf));
+
+        if(pacienteOptional.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("CPF não cadastrado!");
+        }
+
+        var pacienteModel = pacienteOptional.get();
+
+        pacienteModel.setStatus(statusRepository.findByDescricao("inativo"));
+
+        return ResponseEntity.status(HttpStatus.OK).body(pacienteRepository.save(pacienteModel));
     }
 }
