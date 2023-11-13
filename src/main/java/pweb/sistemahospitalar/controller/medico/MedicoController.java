@@ -113,4 +113,20 @@ public class MedicoController {
         }
     }
 
+    @DeleteMapping("/medico/{crm}")
+    public ResponseEntity<Object> deleteMedico(@PathVariable(value = "crm") String crm){
+        Optional<MedicoModel> medicoOptional = Optional.ofNullable(medicoRepository.findByCrm(crm));
+
+        if(medicoOptional.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("CRM não cadastrado!");
+        }
+
+        var medicoModel = medicoOptional.get();
+
+        medicoModel.setStatus(statusRepository.findByDescricao("inativo"));
+
+        return ResponseEntity.status(HttpStatus.OK).body(medicoRepository.save(medicoModel));
+
+    }
+
 }
