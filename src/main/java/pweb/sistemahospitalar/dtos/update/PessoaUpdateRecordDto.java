@@ -1,7 +1,7 @@
-package pweb.sistemahospitalar.dtos.update.medico;
+package pweb.sistemahospitalar.dtos.update;
 
 import jakarta.validation.Valid;
 import pweb.sistemahospitalar.model.geral.EnderecoModel;
 
-public record MedicoUpdateRecordDto(String nome, String telefone, @Valid EnderecoModel endereco) {
+public record PessoaUpdateRecordDto(String nome, String telefone, @Valid EnderecoModel endereco) {
 }
