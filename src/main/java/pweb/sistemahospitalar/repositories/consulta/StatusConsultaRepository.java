@@ -8,4 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface StatusConsultaRepository extends JpaRepository<StatusConsultaModel, UUID> {
+    StatusConsultaModel findByDescricao(String descricao);
 }
