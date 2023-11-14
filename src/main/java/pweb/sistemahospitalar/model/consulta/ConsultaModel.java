@@ -1,6 +1,7 @@
 package pweb.sistemahospitalar.model.consulta;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import pweb.sistemahospitalar.model.medico.MedicoModel;
 import pweb.sistemahospitalar.model.paciente.PacienteModel;
@@ -24,6 +25,8 @@ public class ConsultaModel {
     @ManyToOne
     @JoinColumn(name = "paciente_id")
     private PacienteModel paciente;
+
+    @JsonManagedReference(value = "consulta_id")
     @OneToOne(mappedBy = "consulta")
     private CancelamentoModel cancelamentoModel;
     private LocalDate data;

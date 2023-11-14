@@ -1,5 +1,6 @@
 package pweb.sistemahospitalar.model.consulta;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.UUID;
@@ -10,6 +11,8 @@ public class CancelamentoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+
+    @JsonBackReference(value = "consulta_id")
     @OneToOne
     @JoinColumn(name = "consulta_id")
     private ConsultaModel consulta;
