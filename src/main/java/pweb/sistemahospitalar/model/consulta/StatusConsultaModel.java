@@ -1,5 +1,6 @@
 package pweb.sistemahospitalar.model.consulta;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -14,6 +15,8 @@ public class StatusConsultaModel {
     private UUID id;
     @Column(unique = true)
     private String descricao;
+
+    @JsonManagedReference(value = "status_consulta")
     @OneToMany(mappedBy = "statusConsulta")
     private List<ConsultaModel> consultas;
 

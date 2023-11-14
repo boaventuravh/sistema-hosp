@@ -1,6 +1,7 @@
 package pweb.sistemahospitalar.model.medico;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import pweb.sistemahospitalar.model.abstratas.PessoaModel;
 import pweb.sistemahospitalar.model.consulta.ConsultaModel;
@@ -22,6 +23,7 @@ public class MedicoModel extends PessoaModel {
     @JoinColumn(name = "especialidade_id")
     private EspecialidadeModel especialidade;
 
+    @JsonManagedReference(value = "medico_id")
     @OneToMany(mappedBy = "medico")
     private List<ConsultaModel> consultas;
 
