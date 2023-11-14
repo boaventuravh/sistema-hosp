@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import pweb.sistemahospitalar.model.medico.MedicoModel;
 import pweb.sistemahospitalar.model.paciente.PacienteModel;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.UUID;
 
 @Entity
@@ -21,7 +22,9 @@ public class ConsultaModel {
     private PacienteModel paciente;
     @OneToOne(mappedBy = "consulta")
     private CancelamentoModel cancelamentoModel;
-    private Date dataHora;
+    private LocalDate data;
+    private LocalTime horario;
+
     @ManyToOne
     @JoinColumn(name = "status_consulta")
     private StatusConsultaModel statusConsulta;
@@ -54,11 +57,19 @@ public class ConsultaModel {
         this.paciente = pacienteModel;
     }
 
-    public Date getDataHora() {
-        return dataHora;
+    public LocalDate getData() {
+        return data;
     }
 
-    public void setDataHora(Date dataHora) {
-        this.dataHora = dataHora;
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public LocalTime getHorario() {
+        return horario;
+    }
+
+    public void setHorario(LocalTime horario) {
+        this.horario = horario;
     }
 }
