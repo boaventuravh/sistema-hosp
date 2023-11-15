@@ -22,6 +22,7 @@ import pweb.sistemahospitalar.repositories.consulta.StatusConsultaRepository;
 import pweb.sistemahospitalar.repositories.medico.MedicoRepository;
 import pweb.sistemahospitalar.repositories.paciente.PacienteRepository;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Optional;
@@ -50,13 +51,22 @@ public class ConsultaController {
         Optional<MedicoModel> medicoOptional = Optional.ofNullable(medicoRepository.findByCrm(consultaRecordDto.crmMedico()));
 
         if(medicoOptional.isEmpty() || medicoOptional.get().getStatus().getDescricao().equalsIgnoreCase("inativo")){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Médico não encontrado!");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Médico não encontrado!");
         }
 
         Optional<PacienteModel> pacienteOptional = Optional.ofNullable(pacienteRepository.findByCpf(consultaRecordDto.cpfPaciente()));
 
         if(pacienteOptional.isEmpty() || pacienteOptional.get().getStatus().getDescricao().equalsIgnoreCase("inativo")){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Paciente não encontrado!");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Paciente não encontrado!");
+        }
+
+        // o último horário disponível é 18:00, pois a clínica encerra o funcionamento às 19:00
+        // caso uma consulta seja marcada após as 18:00, ela ultrapassa o horário de funcionamento,
+        // pois cada consulta dura uma hora
+        if(consultaRecordDto.data().getDayOfWeek().equals(DayOfWeek.SUNDAY) ||
+            consultaRecordDto.horario().isBefore(LocalTime.of(7, 0)) ||
+            consultaRecordDto.horario().isAfter(LocalTime.of(18, 0)) ){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Data ou horário fora do período de funcionamento da clínica!");
         }
 
         var medicoModel = medicoOptional.get();
