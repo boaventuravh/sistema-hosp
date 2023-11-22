@@ -64,6 +64,13 @@ public class ConsultaController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não é possível marcar duas consultas no mesmo dia para o mesmo paciente!");
         }
 
+        if (consultaRepository.
+                existsByMedicoAndDataAndHorario(medicoRepository.
+                        findByCrm(consultaRecordDto.crmMedico()),consultaRecordDto.data(),consultaRecordDto.horario()))
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O médico selecionado não está disponível nesse horário");
+        }
+
         // o último horário disponível é 18:00, pois a clínica encerra o funcionamento às 19:00
         // caso uma consulta seja marcada após as 18:00, ela ultrapassa o horário de funcionamento,
         // pois cada consulta dura uma hora
